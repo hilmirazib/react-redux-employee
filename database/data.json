@@ -1,0 +1,73 @@
+[{
+        "id": 1,
+        "name": "Hilmi Razib Yusuf",
+        "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+        "email": "hilmiyusuf197@gmail.com",
+        "salary": "25000000",
+        "date": "2022-06-08",
+        "status": "Active"
+    },
+    {
+        "id": 2,
+        "name": "Bonang Panji Nur",
+        "avatar": "https://randomuser.me/api/portraits/men/2.jpg",
+        "email": "bontengbalap@gmail.com",
+        "salary": "15000000",
+        "date": "2022-06-08",
+        "status": "Inactive"
+    },
+    {
+        "id": 3,
+        "name": "Fikri Rizky Fauzi",
+        "avatar": "https://randomuser.me/api/portraits/men/3.jpg",
+        "email": "cedrickelly@gmail.com",
+        "salary": "10000000",
+        "date": "2022-06-08",
+        "status": "Active"
+    },
+    {
+        "id": 4,
+        "name": "Fiqih Hermawan",
+        "avatar": "https://randomuser.me/api/portraits/men/4.jpg",
+        "email": "fiqihsu@gmail.com",
+        "salary": "15000000",
+        "date": "2022-06-08",
+        "status": "Active"
+    },
+    {
+        "id": 5,
+        "name": "Budi Setiawan",
+        "avatar": "https://randomuser.me/api/portraits/men/5.jpg",
+        "email": "budibudiman@gmail.com",
+        "salary": "15000000",
+        "date": "2022-06-08",
+        "status": "Inactive"
+    },
+    {
+        "id": 6,
+        "name": "Teguh Junian",
+        "avatar": "https://randomuser.me/api/portraits/men/6.jpg",
+        "email": "teguhdavison@gmail.com",
+        "salary": "10000000",
+        "date": "2022-01-08",
+        "status": "Inactive"
+    },
+    {
+        "id": 7,
+        "name": "Andika Jodi S",
+        "avatar": "https://randomuser.me/api/portraits/men/7.jpg",
+        "email": "andikakampang@gmail.com",
+        "salary": "10000000",
+        "date": "2022-05-08",
+        "status": "Active"
+    },
+    {
+        "id": 8,
+        "name": "Kirito",
+        "avatar": "https://randomuser.me/api/portraits/men/8.jpg",
+        "email": "kirito@gmail.com",
+        "salary": "12000",
+        "date": "2022-06-08",
+        "status": "Active"
+    }
+]

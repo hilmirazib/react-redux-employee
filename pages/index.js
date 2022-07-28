@@ -1,7 +1,14 @@
 import Head from 'next/head';
 import { BiUserPlus } from 'react-icons/bi';
+import Table from '../components/table';
+import Form from '../components/form';
+import { useState } from 'react';
 
 export default function Home() {
+  const [visible, setVisible] = useState(false);
+  const handleAddForm = () => {
+    setVisible(!visible);
+  };
   return (
     <section>
       <Head>
@@ -14,7 +21,10 @@ export default function Home() {
         <h1 className="text-xl md:text-5xl text-center font-bold py-10"> Employeee Project</h1>
         <div className="container mx-auto flex justify-between py-5 border-b">
           <div className="left flex gap-3">
-            <button className="flex bg-indigo-500 text-white px-4 rounded-md hover:bg-gray-50 hover:text-indigo-500 hover:border-indigo-500">
+            <button
+              onClick={handleAddForm}
+              className="flex bg-indigo-500 text-white px-4 rounded-md hover:bg-gray-50 hover:text-indigo-500 hover:border-indigo-500"
+            >
               Employee{' '}
               <span className="px-1">
                 <BiUserPlus size={23}></BiUserPlus>
@@ -28,6 +38,12 @@ export default function Home() {
               <BiUserPlus className="w-6 h-6"></BiUserPlus>
             </button>
           </div> */}
+        </div>
+        {/* Collapse Table */}
+        {visible ? <Form></Form> : <></>}
+        {/* Table */}
+        <div className="container mx-auto">
+          <Table></Table>
         </div>
       </main>
     </section>
