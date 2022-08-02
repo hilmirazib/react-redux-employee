@@ -2,21 +2,36 @@ import { useReducer } from 'react';
 import { BiPlus } from 'react-icons/bi';
 import Success from './success';
 import Bug from './bug';
-const formReducer = (state, event) => {
-  return {
-    ...state,
-    [event.target.name]: event.target.value,
-  };
-};
-export default function AddUserForm() {
-  const [formData, setFormData] = useReducer(formReducer, {});
+import { useQueryClient, useMutation } from 'react-query';
+import { addUser, getUsers } from '../lib/helper';
+
+export default function AddUserForm({ formData, setFormData }) {
+  const queryClient = useQueryClient();
+
+  const addMutation = useMutation(addUser, {
+    onSuccess: () => {
+      // setFormData({});
+      queryClient.prefetchQuery('users', getUsers);
+      console.log('success');
+    },
+  });
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Object.keys(formData).length === 0) return console.log('Form is empty');
-
-    console.log(formData);
+    let { firstname, lastname, email, salary, date, status } = formData;
+    const model = {
+      name: `${firstname} ${lastname}`,
+      avatar: `https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 10)}.jpg`,
+      email,
+      salary,
+      date,
+      status: status ?? 'Active',
+    };
+    addMutation.mutate(model);
   };
-  if (Object.keys(formData).length > 0) return <Success msgSuccess={'Form Data Successfully Submitted'}></Success>;
+  if (addMutation.isLoading) return <div>Loading</div>;
+  if (addMutation.isError) return <Bug msgError={addMutation.error.message}></Bug>;
+  if (addMutation.isSuccess) return <Success msgSuccess={'Form Data Successfully Submitted'}></Success>;
   return (
     <form className="grid lg:grid-cols-2 w-4/6 gap-4 mt-4" onSubmit={handleSubmit}>
       <div className="input-type">

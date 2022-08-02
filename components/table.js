@@ -1,6 +1,18 @@
 import { BiEdit, BiTrashAlt } from 'react-icons/bi';
-import data from '../database/data.json';
+// import data from '../database/data.json';
+import { getUsers, getUser, addUser, deleteUser, updateUser } from '../lib/helper';
+import { useQuery } from 'react-query';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleChangeAction, updateAction } from '../redux/reducer';
 export default function Table() {
+  // getUsers().then((res) => {
+  //   console.log(res);
+  // });
+
+  const { isLoading, isError, data, error } = useQuery('users', getUsers);
+  if (isLoading) return <div>Employee is Loading</div>;
+  if (isError) return <div>Got Error {error}</div>;
+
   return (
     <table className="min-w-full table-auto">
       <thead>
@@ -33,11 +45,21 @@ export default function Table() {
     </table>
   );
 }
-function Tr({ id, name, avatar, email, salary, date, status }) {
+function Tr({ _id, name, avatar, email, salary, date, status }) {
+  const visible = useSelector((state) => state.app.client.toggleForm);
+  const dispatch = useDispatch();
+
+  const onUpdate = () => {
+    dispatch(toggleChangeAction(_id));
+    if (visible) {
+      dispatch(updateAction(_id));
+    }
+    console.log(visible);
+  };
   return (
     <tr className="bg-gray-50 text-center">
       <td className="px-16 py-2 flex flex-row items-center">
-        <img src={avatar || '#'} alt="" />
+        <img src={avatar || '#'} alt="" className="h-8 w-8 rounded-full object-cover" />
         <span className="text-center ml-2 font-semibold">{name || 'Unknown'}</span>
       </td>
       <td className="px-16 py-2">{email || 'Unknown'}</td>
@@ -45,11 +67,11 @@ function Tr({ id, name, avatar, email, salary, date, status }) {
       <td className="px-16 py-2">{date || 'Unknown'}</td>
       <td className="px-16 py-2">
         <button className="cursor">
-          <span className="bg-green-500 text-white px-5 py-1 rounded-full">{status || 'Unknown'}</span>
+          <span className={`${status === 'Active' ? 'bg-green-500' : 'bg-red-500'} text-white px-5 py-1 rounded-full`}>{status || 'Unknown'}</span>
         </button>
       </td>
       <td className="px-16 py-2 flex justify-around gap-4">
-        <button className="cursor">
+        <button className="cursor" onClick={onUpdate}>
           <BiEdit size={25} color={'rgb(23, 197, 94'}></BiEdit>
         </button>
         <button className="cursor">

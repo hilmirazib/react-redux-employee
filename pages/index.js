@@ -3,11 +3,16 @@ import { BiUserPlus } from 'react-icons/bi';
 import Table from '../components/table';
 import Form from '../components/form';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleChangeAction } from '../redux/reducer';
 
 export default function Home() {
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
+  const visible = useSelector((state) => state.app.client.toggleForm);
+  const dispatch = useDispatch();
   const handleAddForm = () => {
-    setVisible(!visible);
+    // setVisible(!visible);
+    dispatch(toggleChangeAction());
   };
   return (
     <section>
@@ -23,9 +28,9 @@ export default function Home() {
           <div className="left flex gap-3">
             <button
               onClick={handleAddForm}
-              className="flex bg-indigo-500 text-white px-4 rounded-md hover:bg-gray-50 hover:text-indigo-500 hover:border-indigo-500"
+              className="flex bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-50 hover:border-indigo-500 hover:text-gray-800"
             >
-              Employee{' '}
+              Add Employee{' '}
               <span className="px-1">
                 <BiUserPlus size={23}></BiUserPlus>
               </span>
